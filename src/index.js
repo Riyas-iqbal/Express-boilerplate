@@ -1,5 +1,5 @@
 const express = require('express')
-const { authLimiter } = require('./middlewares/rateLimiter')
+const { authLimiter } = require('./middlewares/rate-limiter')
 const customLog = require('./middlewares/logger')
 require('dotenv').config()
 
@@ -8,9 +8,10 @@ const app = express()
 //Custom Http logging console and local
 app.use(customLog)
 
+app.use(express.json())
+
 // Limit repeated failed requests to auth endpoints
 if (process.env.NODE_ENV === 'production') {
-    console.log('hey')
     app.use('/api/auth', authLimiter)
 }
 

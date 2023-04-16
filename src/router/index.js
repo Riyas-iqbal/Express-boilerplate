@@ -1,15 +1,16 @@
 const router = require('express').Router()
 const authRoute = require('./auth.route')
+const privateRoute = require('./private.route')
 
 const defaultRoutes = [
     {
         path: '/auth',
         route: authRoute,
     },
-    // {
-    //     path: '/users',
-    //     route: userRoute,
-    // },
+    {
+        path: '/private',
+        route: privateRoute,
+    },
 ];
 
 defaultRoutes.forEach((route) => {

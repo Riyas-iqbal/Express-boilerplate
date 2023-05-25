@@ -1,6 +1,7 @@
 const express = require('express')
 const { authLimiter } = require('./middlewares/rate-limiter')
 const customLog = require('./middlewares/logger')
+const errorHanlder = require('./middlewares/errorHandler')
 require('dotenv').config()
 
 const app = express()
@@ -17,6 +18,8 @@ if (process.env.NODE_ENV === 'production') {
 
 //routes
 app.use('/api', require('./router'))
+
+app.use(errorHanlder)
 
 app.use('*', (req, res) => {
     res.status(404).json('Not found')

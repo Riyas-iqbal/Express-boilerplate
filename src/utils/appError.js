@@ -6,11 +6,11 @@ class AppError extends Error {
     }
 
     static ValidationError(message) {
-        return new AppError(1001, message, 400)
+        return new AppError(VALIDATION, message, 400)
     }
 
     static UserNotFound(message){
-        return new App
+        return new AppError
     }
 }
 

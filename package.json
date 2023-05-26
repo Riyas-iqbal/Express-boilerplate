@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src",
-    "dev": "cross-env NODE_ENV=development nodemon src/index.js src",
+    "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

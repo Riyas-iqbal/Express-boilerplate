@@ -1,31 +1,23 @@
-import express from 'express'
-import rateLimit from './middlewares/rate-limiter.js'
-import customLog from './middlewares/logger.js'
-import errorHandler from './middlewares/errorHandler.js'
-import apiRoute from './router/index.js'
-import 'dotenv/config'
+import app from './app.js'
 
-const app = express()
+const server = app.listen(parseInt(process.env.PORT, () => {
+    console.log(`server started at port - ${process.env.PORT}`)
+}))
 
-//Custom Http logging console and local
-app.use(customLog)
-
-app.use(express.json())
-
-// Limit repeated failed requests to auth endpoints
-if (process.env.NODE_ENV === 'production') {
-    app.use('/api/auth', rateLimit)
-}
-
-//routes
-app.use('/api', apiRoute)
-
-app.use(errorHandler)
-
-app.use('*', (req, res) => {
-    res.status(404).json('Not found')
+process.on('uncaughtException', (err) => {
+    console.log('Uncaught exception - ', err)
+    process.exit(1)
 })
 
-app.listen('3000', () => {
-    console.log('server started at port - 3000')
+process.on('unhandledRejection', (err) => {
+    console.log('Unhandled rejection - ', err)
+    process.exit(1)
+})
+
+// termination signal from OS
+process.on('SIGTERM',()=>{
+    server.close((err)=>{
+        console.log('Http server closed')
+    })
+    process.exit(err ? 1:0)
 })

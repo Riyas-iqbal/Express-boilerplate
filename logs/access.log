@@ -299,3 +299,4 @@
 [5/26/2023, 5:35:57 PM] ::1 - - "GET /api/test/ HTTP/1.1" 500 22 "-" "PostmanRuntime/7.32.2"
 [5/26/2023, 5:38:24 PM] ::1 - - "GET /api/test/ HTTP/1.1" 500 22 "-" "PostmanRuntime/7.32.2"
 [5/26/2023, 5:38:45 PM] ::1 - - "GET /api/test/ HTTP/1.1" 500 60 "-" "PostmanRuntime/7.32.2"
+[5/26/2023, 8:24:36 PM] ::1 - - "GET /api/test/ HTTP/1.1" 500 1285 "-" "PostmanRuntime/7.32.2"

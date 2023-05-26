@@ -10,9 +10,8 @@ class AppError extends Error {
     }
 
     static UserNotFound(message){
-        return new AppError
+        return new AppError()
     }
 }
-
 
 export default AppError

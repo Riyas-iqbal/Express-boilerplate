@@ -1,8 +1,8 @@
 import app from './app.js'
 
-const server = app.listen(parseInt(process.env.PORT, () => {
+const server = app.listen(parseInt(process.env.PORT), () => {
     console.log(`server started at port - ${process.env.PORT}`)
-}))
+})
 
 process.on('uncaughtException', (err) => {
     console.log('Uncaught exception - ', err)

@@ -1,3 +1,6 @@
+import { StatusCodes } from 'http-status-codes'
+import * as errorCodes from '../config/error.codes.js'
+
 class AppError extends Error {
     constructor(appCode, errorMessage, statusCode) {
         super(errorMessage)
@@ -5,12 +8,16 @@ class AppError extends Error {
         this.statusCode = statusCode
     }
 
-    static ValidationError(message) {
-        return new AppError(VALIDATION, message, 400)
+    static validation(message) {
+        return new AppError(errorCodes.VALIDATION_ERROR, message, StatusCodes.BAD_REQUEST)
     }
 
-    static UserNotFound(message){
-        return new AppError()
+    static authentication(message) {
+        return new AppError(errorCodes.AUTHENTICATION_ERROR, message, StatusCodes.UNAUTHORIZED)
+    }
+
+    static forbidden(message) {
+        return new AppError(errorCodes.FORBIDDEN_ERROR, message, StatusCodes.FORBIDDEN)
     }
 }
 

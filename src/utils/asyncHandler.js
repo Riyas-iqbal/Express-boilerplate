@@ -1,4 +1,4 @@
-const asyncHandler = async (controller)=>{
+export default asyncHandler = async (controller)=>{
     try {
         await controller(req,res)
     } catch (error) {
@@ -6,4 +6,3 @@ const asyncHandler = async (controller)=>{
     }
 }
 
-module.exports = asyncHandler

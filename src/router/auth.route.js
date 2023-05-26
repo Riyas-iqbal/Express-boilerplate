@@ -1,5 +1,7 @@
-const router = require('express').Router()
-const authController = require('../controller/auth.controller')
+import { Router } from 'express'
+import authController from '../controller/auth.controller.js'
+
+const router = Router()
 
 router
     .route('/signin')
@@ -15,7 +17,7 @@ router
 //     )
 
 
-let refreshTokens = []
+// let refreshTokens = []
 
 // app.post('/token', (req, res) => {
 //     const refreshToken = req.body.token
@@ -34,4 +36,4 @@ let refreshTokens = []
 // })
 
 
-module.exports = router
+export default router

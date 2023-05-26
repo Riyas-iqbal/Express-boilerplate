@@ -1,6 +1,12 @@
-const logger = require('morgan')
-const fs = require('fs');
-const path = require('path');
+import logger from 'morgan'
+import fs from 'fs'
+import path from 'path'
+
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // All HTTP Request will be logged to access.log file
 const accessLogStream = fs.createWriteStream(path.join(__dirname, '../../logs/access.log'), { flags: 'a' })
@@ -17,14 +23,12 @@ const localLogFormat = '[:indian-time] :remote-addr - :remote-user ":method :url
 
 // Custom log middleware for logging (console and local)
 function customLog(req, res, next) {
-
     const loggerDev = logger('dev');
     const loggerCombined = logger(localLogFormat, { stream: accessLogStream });
-    
     loggerDev(req, res, (err) => {
         if (err) return next(err);
         loggerCombined(req, res, next);
     });
 }
 
-module.exports = customLog
+export default customLog

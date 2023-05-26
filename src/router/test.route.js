@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import isAuth from '../middlewares/authentication.js'
+import testController from '../controller/test.controller.js'
 
 const router = Router()
 
@@ -15,9 +16,7 @@ router
 
 router
     .route('/')
-    .get((req, res) => {
-        console.log('test route accessed')
-    })
+    .get(testController.testErrorHandling)
 
 
 export default router

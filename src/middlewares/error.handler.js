@@ -2,6 +2,10 @@ import AppError from "../utils/app.error.js"
 import { StatusCodes, ReasonPhrases } from 'http-status-codes'
 
 const errorHandler = (error, req, res, next) => {
+    console.log('Is Error instance of App Error', error instanceof AppError)
+
+    console.log('Error is - ', error)
+
     if (error instanceof AppError) {
         const statusCode = error.statusCode || 500
         const responseData = {
@@ -12,7 +16,7 @@ const errorHandler = (error, req, res, next) => {
         }
         return res.status(statusCode).json(responseData)
     }
-    res.statusCode(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: ReasonPhrases.INTERNAL_SERVER_ERROR })
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: ReasonPhrases.INTERNAL_SERVER_ERROR })
 }
 
 export default errorHandler

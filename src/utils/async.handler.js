@@ -6,9 +6,5 @@ const asyncErrorWrapper = controller => async (req, res, next) => {
     }
 }
 
-
-
-
-
 export default asyncErrorWrapper
 
